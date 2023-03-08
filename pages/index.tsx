@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Montserrat } from "next/font/google";
 import Preview from "@/components/Preview";
 import SearchContextProvider from "@/contexts/SearchContext";
+import Introduce from "@/components/Introduce";
 
 const montserrat = Montserrat({
 	weight: ["400", "500", "700"],
@@ -24,10 +25,11 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main className={`${montserrat.className} text-brown`}>
+			<main className={`${montserrat.className} text-brown flex flex-col gap-[100px] mb-[100px]`}>
 				<SearchContextProvider>
 					<Preview />
 				</SearchContextProvider>
+				<Introduce />
 			</main>
 		</>
 	);

@@ -34,7 +34,7 @@ const Search: React.FC<Props> = ({ options, breedId, setBreedId }) => {
 		setBreed(e.target.value);
 	};
 	return (
-		<div className="text-brown">
+		<div className="text-brown relative">
 			<div className="relative bg-white rounded-full flex px-4">
 				<input
 					type="text"
@@ -54,7 +54,7 @@ const Search: React.FC<Props> = ({ options, breedId, setBreedId }) => {
 						initial={{ opacity: 0, y: 50 }}
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: 50 }}
-						className="bg-white flex flex-col mt-4 rounded-3xl px-1 py-2"
+						className="bg-white max-h-[180px] overflow-y-scroll scrollbar-hide w-full flex flex-col mt-4 rounded-3xl px-1 py-2 absolute z-50"
 					>
 						{options
 							?.filter((x) => x.name.includes(search))

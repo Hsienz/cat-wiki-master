@@ -14,12 +14,8 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'cdn2.thecatapi.com',
+				hostname: '*',
 			},
-			{
-				protocol: 'https',
-				hostname: 'cdn1.thecatapi.com',
-			}
 		]
 	}
 };
