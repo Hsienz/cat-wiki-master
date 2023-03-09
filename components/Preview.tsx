@@ -6,6 +6,7 @@ import Search from "./Search";
 import useSWR from "swr";
 import axios from "axios";
 import { useBreed } from "@/contexts/BreedContext";
+import Link from "next/link";
 const Preview = () => {
 	const { innerWidth } = useWidth();
 	const [imageTag, setImageTag] = useState("sm");
@@ -22,7 +23,7 @@ const Preview = () => {
 		else setImageTag("sm");
 	}, [innerWidth]);
 	return (
-		<div className="mt-10 overflow-hidden bg-yellow rounded-3xl">
+		<div className="overflow-hidden bg-yellow rounded-3xl">
 			<div className="relative">
 				<Image
 					src={`/assets/HeroImage${imageTag}.png`}
@@ -44,36 +45,42 @@ const Preview = () => {
 					<p className="text-[24px]">
 						Get to know more about your cat breed
 					</p>
-					{!isLoadingBreed && (
-						<Search
-							options={breed.map((x: any) => {
-								return { value: x.id, name: x.name };
-							})}
-							breedId={breedId}
-							setBreedId={setBreedId}
-						/>
-					)}
-					{!isLoading && breedId && (
-						<div className="flex gap-4 absolute">
-							{data.map((x: any) => (
-								<div key={x.id} className="h-32 w-32 overflow-hidden relative aspect-square rounded-xl">
-									<Image
-										src={x.url}
-										alt=""
-										fill={true}
-										style={{objectFit:'cover'}}
-										className="!relative"
-									/>
-								</div>
-							))}
-						</div>
-					)}
+					<Search
+						options={
+							isLoadingBreed
+								? []
+								: breed.map((x: any) => {
+										return { value: x.id, name: x.name };
+								  })
+						}
+						breedId={breedId}
+						setBreedId={setBreedId}
+						className="mt-6"
+					/>
 				</div>
 			</div>
 			<div className="px-16 pt-24 pb-20">
-				<h2 className="text-4xl lg:text-5xl font-bold w-[540px]">
-					66+ Breeds For you to discover
-				</h2>
+<div className="flex justify-between">
+					<h2 className="text-4xl lg:text-5xl font-bold w-[540px]">
+						66+ Breeds For you to discover
+					</h2>
+					<Link href="#" className="font-bold self-end">SEE MORE</Link>
+</div>
+				{!isLoading && breedId && (
+					<div className="grid grid-cols-4 gap-8 mt-10">
+						{data.map((x: any) => (
+							<div key={x.id} className="rounded-3xl overflow-hidden aspect-square">
+								<Image
+									src={x.url}
+									alt=""
+									fill={true}
+									style={{ objectFit: "cover" }}
+									className="!relative"
+								/>
+							</div>
+						))}
+					</div>
+				)}
 			</div>
 		</div>
 	);

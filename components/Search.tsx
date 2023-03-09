@@ -8,9 +8,10 @@ interface Props {
 	options?: { value: string; name: string }[];
   breedId : string,
   setBreedId: React.Dispatch<React.SetStateAction<string>>
+  className: string
 }
 
-const Search: React.FC<Props> = ({ options, breedId, setBreedId }) => {
+const Search: React.FC<Props> = ({ options, breedId, setBreedId, className }) => {
 	const { search, setSearch } = useSearch();
 	const [focus, setFocus] = useState(false);
 	const setBreed = (breed: string) => {
@@ -34,7 +35,7 @@ const Search: React.FC<Props> = ({ options, breedId, setBreedId }) => {
 		setBreed(e.target.value);
 	};
 	return (
-		<div className="text-brown relative">
+		<div className={`text-brown relative ${className}`}>
 			<div className="relative bg-white rounded-full flex px-4">
 				<input
 					type="text"

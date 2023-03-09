@@ -25,7 +25,7 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main className={`${montserrat.className} text-brown flex flex-col gap-[100px] mb-[100px]`}>
+			<main className={`${montserrat.className} text-brown`}>
 				<SearchContextProvider>
 					<Preview />
 				</SearchContextProvider>

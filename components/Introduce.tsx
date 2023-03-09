@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 const Introduce = () => {
 	return (
-		<div className="flex flex-col lg:flex-row-reverse lg:justify-between">
+		<div className="flex flex-col lg:flex-row-reverse lg:justify-between px-16 my-[100px]">
 			<div className="flex gap-4">
 				<div className="relative flex flex-col gap-[inherit]">
 					<Image
