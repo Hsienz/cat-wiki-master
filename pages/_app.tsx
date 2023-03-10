@@ -2,16 +2,16 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Layout from "@/components/Layout";
 import WidthContextProvider from "@/contexts/WidthContext";
-import BreedContextProvider from "@/contexts/BreedContext";
+import BreedsContextProvider from "@/contexts/BreedsContext";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<WidthContextProvider>
-			<BreedContextProvider>
+			<BreedsContextProvider>
 				<Layout>
 					<Component {...pageProps} />
 				</Layout>
-			</BreedContextProvider>
+			</BreedsContextProvider>
 		</WidthContextProvider>
 	);
 }

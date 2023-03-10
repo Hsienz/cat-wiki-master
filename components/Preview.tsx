@@ -5,17 +5,21 @@ import Logo from "../public/assets/CatwikiLogo.svg";
 import Search from "./Search";
 import useSWR from "swr";
 import axios from "axios";
-import { useBreed } from "@/contexts/BreedContext";
+import { useBreeds } from "@/contexts/BreedsContext";
 import Link from "next/link";
 const Preview = () => {
 	const { innerWidth } = useWidth();
 	const [imageTag, setImageTag] = useState("sm");
-	const { breed, isLoadingBreed } = useBreed();
+	const { breeds: breed, isLoadingBreed } = useBreeds();
 	const [breedId, setBreedId] = useState("");
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 	const { data, isLoading, error } = useSWR(
 		`https://api.thecatapi.com/v1/images/search?limit=4&breed_ids=${breedId}&api_key=live_TS17jVuKYw92HhAUFEpB9i5WtPxA1ssZKv04CSOWv9pdzhJiWlAMlfNaXNhpVXgh`,
-		fetcher
+		fetcher,
+		{
+			revalidateOnFocus: false,
+			revalidateOnReconnect: false
+		}
 	);
 	useEffect(() => {
 		if (innerWidth >= 1024) setImageTag("lg");
